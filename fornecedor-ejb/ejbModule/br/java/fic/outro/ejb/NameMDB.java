@@ -6,11 +6,11 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-@MessageDriven(name="nameMDB", activationConfig = {
+/*@MessageDriven(name="nameMDB", activationConfig = {
 		@ActivationConfigProperty(propertyName="destinationType", propertyValue="javax.jms.Queue"),
 		@ActivationConfigProperty(propertyName="destination", propertyValue="java:/queue/test"),
 		@ActivationConfigProperty(propertyName="acknowledgeMode", propertyValue="Auto-acknowledge")
-})
+})*/
 public class NameMDB implements MessageListener {
 	
 	@Override
