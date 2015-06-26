@@ -4,10 +4,5 @@
   <module>
     <ejb>fornecedor-ejb.jar</ejb>
   </module>
-  <module>
-    <web>
-      <web-uri>fornecedor-web.war</web-uri>
-      <context-root>fornecedor-web</context-root>
-    </web>
-  </module>
+  <library-directory>META-INF/lib</library-directory>
 </application>

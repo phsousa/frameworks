@@ -1,4 +1,4 @@
-package br.java.fic.outro.ejb;
+package br.fic.java.ejb;
  
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,8 +12,7 @@ import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
 
-import br.java.fic.entidade.User;
-import br.java.fic.facade.MessageCreatorService;
+import br.fic.java.facade.MessageCreatorService;
  
 @Stateless
 public class MessageCreator implements MessageCreatorService{
@@ -50,10 +49,10 @@ public class MessageCreator implements MessageCreatorService{
         }
     }
  
-    public void sendMessage(User user) {
+    public void sendMessage(String string) {
         ObjectMessage message;
         try {
-            message = session.createObjectMessage(user);
+            message = session.createObjectMessage(string);
             messageProducer.send(message);
         } catch (JMSException e) {
             e.printStackTrace();
