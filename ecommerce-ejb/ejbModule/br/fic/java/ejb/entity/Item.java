@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -20,11 +22,20 @@ public class Item implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE)
-	@Column(name="id_produto", unique=true, nullable=false)
+	@Column(name="id_item", unique=true, nullable=false)
 	private Integer id;
 	
 	@Column (name="quantidade")
 	private Integer quantidade;
+	
+	@ManyToOne
+	@JoinColumn(name = "pedido_id", nullable = true)
+	private Pedido pedido;
+	
+	@OneToOne
+    @PrimaryKeyJoinColumn
+    private  Produto produto;
+
 	
 	public Item() {
 		super();
@@ -35,10 +46,6 @@ public class Item implements Serializable{
 		this.id = id;
 		this.quantidade = quantidade;
 	}
-
-	@OneToOne
-    @PrimaryKeyJoinColumn
-    private  Produto produto;
 	
 	public Integer getId() {
 		return id;

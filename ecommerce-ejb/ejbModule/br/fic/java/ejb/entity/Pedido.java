@@ -29,10 +29,10 @@ public class Pedido implements Serializable{
 	
 	@Column(name="valor_total")
 	private Integer valorTotal;
-
+	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<Produto> produtos;
-	 
+	private List<Item> itens;
+		 
 	public Pedido() {
 		super();
 	}
@@ -68,11 +68,11 @@ public class Pedido implements Serializable{
 		this.valorTotal = valorTotal;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<Item> getItens() {
+		return itens;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
 }
