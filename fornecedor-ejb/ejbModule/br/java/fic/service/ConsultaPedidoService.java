@@ -1,5 +1,6 @@
 package br.java.fic.service;
 import br.java.fic.entidade.Pedido;
+import br.java.fic.facade.ConsultaPedidoServiceInterface;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import javax.persistence.PersistenceContext;
 //http://localhost:8080/fornecedor-ejb/ConsultaPedidoService/ConsultaPedidoService
 @Stateless
 @WebService(serviceName="ConsultaPedidoService")
-public class ConsultaPedidoService{
+public class ConsultaPedidoService {
 
 	public ConsultaPedidoService(){
 	}
@@ -25,13 +26,8 @@ public class ConsultaPedidoService{
 		entityManager.persist(pedido);
 	}    
 
-	@WebMethod(operationName="getPedidos")
-	public List<Pedido> listar() {
 
-		return listarTodosPedidos();
-	}
-
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unused", "unchecked" })
 	private List<Pedido> listarTodosPedidos() {
 		return entityManager.createQuery("From Pedido").getResultList();
 	}

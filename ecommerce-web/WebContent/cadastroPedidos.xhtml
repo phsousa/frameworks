@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de Pedidos</title>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<div align="center">
+			<h:outputLabel for="quantidade" value="Quantidade: " />
+			<h:inputText id="quantidade" required="true"
+				value="#{pedidoMB.pedido.valorTotal}" />
+
+			<br />
+
+			<h:commandButton action="#{pedidoMB.salvarPedido()}" value="Salvar" />
+
+			<br />
+
+			<!-- 		<h:dataTable value="#{pedidoMB.produtos}"  var="user"> -->
+			<!-- 			<h:column> -->
+			<!-- 				<h:outputText value="#{produto.id}" /> -->
+			<!-- 			</h:column> -->
+			<!-- 			<h:column> -->
+			<!-- 				<h:outputText value="#{produto.name}" /> -->
+			<!-- 			</h:column> -->
+			<!-- 		</h:dataTable> -->
+
+			<!-- 		<h:outputLabel for="produtos" value="Lista"/> -->
+			<!-- 		<h:selectOneMenu id="produtos"> -->
+			<!-- 			<f:selectItems value="#{pedidoMB.produtos}"></f:selectItems> -->
+			<!-- 		</h:selectOneMenu> -->
+		</div>
+	</h:form>
+
+</h:body>
+
+</html>

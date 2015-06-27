@@ -26,8 +26,6 @@ public class Item implements Serializable{
 	@Column (name="quantidade")
 	private Integer quantidade;
 	
-	
-	
 	public Item() {
 		super();
 	}
