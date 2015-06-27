@@ -31,7 +31,7 @@ public class Pedido implements Serializable{
 	private Integer valorTotal;
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<Produto> produtos;
+	private List<Item> itens;
 	 
 	public Pedido() {
 		super();
@@ -66,13 +66,5 @@ public class Pedido implements Serializable{
 
 	public void setValorTotal(Integer valorTotal) {
 		this.valorTotal = valorTotal;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
 	}
 }

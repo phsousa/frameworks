@@ -1,23 +1,24 @@
 package br.fic.java.managedbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
-import br.fic.java.dao.PedidoDao;
+import br.fic.java.ejb.entity.Item;
 import br.fic.java.ejb.entity.Pedido;
 import br.fic.java.ejb.entity.Produto;
 import br.fic.java.facade.MessageCreatorService;
+import br.fic.java.facade.PedidoService;
+import br.fic.java.web.CadastroPedido;
 
 import com.google.gson.Gson;
-
-
 
 @Named(value="pedidoMB")
 @RequestScoped
@@ -27,41 +28,43 @@ public class PedidoMB implements Serializable{
 
 	private List<Produto> produtos;
 
-	@Inject
-	private PedidoDao pedidoDao;
+	@EJB
+	private PedidoService pedidoService;
+	
+	@EJB
+	private MessageCreatorService messageCreatorService;
 
 	private Pedido pedido;
 
 	private Produto produto;
 
+	private Item item;
+
+	private ArrayList<CadastroPedido> carro; 
+
 	private Integer valorTotal;	
 
 	@PostConstruct
-	public void reset() {
+	public void init() {
 		pedido = new Pedido();
-		//produtos = listarProdutos();
+		produtos = getProdutos();
 		produto = new Produto();
 	}
-
-	@EJB
-	private MessageCreatorService messageCreatorService;
 
 	//Metodo responsavel por salvar o pedido
 	public void salvarPedido(){
 
-
 		pedido.setDataPedido(new Date());
 
+		pedidoService.salvarPedido(pedido);
 		
-		/*produto.setNome("PH");
-		produto.setPreco(100);
-		
-		produtos.add(produto);
-		
-		pedido.setProdutos(produtos);
+		enviarPedidosFila(pedido);
 
-		pedidoDao.guardar(pedido);*/
+	}
 
+	//Resposavel por converter para JSON e enviar para fila.
+	public void enviarPedidosFila(Pedido pedido) {
+		
 		//instancia um objeto da classe Gson	
 		Gson gson = new Gson();
 
@@ -72,20 +75,15 @@ public class PedidoMB implements Serializable{
 		System.out.println(pedidoJson); 
 
 		messageCreatorService.sendMessage(pedidoJson);
-
 	}
 
 	//Metodo responsavel por obter todos os produtos
-	public List<Produto> listarProdutos(){
+	public List<Produto> getProdutos(){
 
-		produtos = pedidoDao.listarTodosProdutos();
-		
+		produtos = pedidoService.listarTodosProdutos(); 
+
 		return produtos;
 
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
@@ -106,5 +104,26 @@ public class PedidoMB implements Serializable{
 
 	public void setValorTotal(Integer valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public void setCarro(ArrayList<CadastroPedido> carro){  
+		this.carro = carro;  
+	}  
+
+	public ArrayList<CadastroPedido> getCarro(){  
+		return carro;  
+	}
+
+	public void addPedidoItem(ActionEvent ev){  
+		CadastroPedido c = new CadastroPedido();   
+		carro.add(c); //adiciona na lista, vai aparecer no grid quando ele for atualizado  
 	}
 }

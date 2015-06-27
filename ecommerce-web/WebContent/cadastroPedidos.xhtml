@@ -15,16 +15,70 @@
 <h:body>
 	<h:form>
 		<div align="center">
-			<h:outputLabel for="quantidade" value="Quantidade: " />
-			<h:inputText id="quantidade" required="true"
-				value="#{pedidoMB.pedido.valorTotal}" />
-
-			<br />
+		
+<!-- 			<h:outputLabel for="quantidade" value="Quantidade: " /> -->
+<!-- 			<h:inputText id="quantidade" required="true" -->
+<!-- 				value="#{pedidoMB.pedido.valorTotal}" /> -->
+<!-- 			<br /> -->
 
 			<h:commandButton action="#{pedidoMB.salvarPedido()}" value="Salvar" />
 
 			<br />
+        
+           
+        <h:outputLabel for="produtos" value="Lista: "/> 
+			<h:selectOneMenu id="produtos"> 
+			<f:selectItems value="#{pedidoMB.produtos}"/>
+		</h:selectOneMenu>
+		<!--  
+		<h:outputLabel for="quantidade" value="Quantidade: "/>
+		<h:inputText id="quantidade" required="true" value="#{PedidoMB.item.quantidade}"/>
+			
+		<h:outputLabel for="adicionar" value="Adicionar: " />		
+		
+  		<h:commandButton id="adicionar" value="+"  action="#{PedidoMB.addPedidoItem}"  update="grid" />     
+		
+		<br />
+		
+		<h:dataTable id="grid" value="#{PedidoMB.getCarro}" var="pedido" border="1" cellspacing="2">  
+            <h:column>  
+                 <f:facet name="header">  
+                     <h:outputText value="ID"/>  
+                 </f:facet>  
+                 <h:outputText value="#{pedido.id}"/>    
+            </h:column>  
+            <h:column>  
+                 <f:facet name="header">  
+                     <h:outputText value="Nome"/>  
+                 </f:facet>  
+                 <h:outputText value="#{pedido.nome}"/>  
+            </h:column>
+            <h:column>  
+                 <f:facet name="header">  
+                     <h:outputText value="Quantidade"/>  
+                 </f:facet>  
+                 <h:outputText value="#{pedido.quantidade}"/> 
+            </h:column>
+            <h:column>  
+                 <f:facet name="header">  
+                     <h:outputText value="Preço"/>  
+                 </f:facet>  
+                 <h:outputText value="#{pedido.preco}"/> 
+            </h:column>              
+           <h:column>  
+                 <f:facet name="header">  
+                     <h:outputText value="Registerd"/>  
+                 </f:facet>  
+                     <h:selectBooleanCheckbox value="#{user.registered}"  
+                           title="Registered?" tabindex="0"/>  
+            </h:column>  
+        </h:dataTable> 
 
+		<br />
+	
+	    <h:commandButton action="#{CarrinhoCompraBean.save}" value="Confirmar" />
+	    	    
+	 -->
 			<!-- 		<h:dataTable value="#{pedidoMB.produtos}"  var="user"> -->
 			<!-- 			<h:column> -->
 			<!-- 				<h:outputText value="#{produto.id}" /> -->

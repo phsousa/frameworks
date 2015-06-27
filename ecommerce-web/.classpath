@@ -10,5 +10,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime 1"/>
+	<classpathentry kind="lib" path="C:/Users/Paulo Henrique/git/frameworks/ecommerce-app/EarContent/META-INF/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

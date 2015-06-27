@@ -10,4 +10,5 @@
       <context-root>ecommerce-web</context-root>
     </web>
   </module>
+	<library-directory>META-INF/lib</library-directory>  
 </application>

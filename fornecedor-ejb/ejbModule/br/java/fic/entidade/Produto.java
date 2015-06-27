@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,9 +28,8 @@ public class Produto implements Serializable{
 	@Column(name="preco")
 	private Integer preco;
 	
-	@ManyToOne
-    @JoinColumn(name="id_pedido")
-    private Pedido pedido;
+	@OneToOne(mappedBy="produto", cascade=CascadeType.ALL)
+    private Item item;
 	
 	public Produto() {
 		super();
@@ -44,9 +41,6 @@ public class Produto implements Serializable{
 		this.nome = nome;
 		this.preco = preco;
 	}
-
-	@OneToOne(mappedBy="produto", cascade=CascadeType.ALL)
-    private Item item;
 	
 	public Integer getId() {
 		return id;

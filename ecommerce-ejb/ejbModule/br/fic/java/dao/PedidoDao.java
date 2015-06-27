@@ -3,8 +3,8 @@ package br.fic.java.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.fic.java.ejb.entity.Pedido;
 import br.fic.java.ejb.entity.Produto;
@@ -13,10 +13,10 @@ public class PedidoDao implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
+	@PersistenceContext(name="fic-pu")
 	private EntityManager manager;
 	
-	@Inject
+	@PersistenceContext(name="fic-pu")
 	private ProdutoDao produtoDao;
 
 	//Metodo responsavel por salvar o pedido
